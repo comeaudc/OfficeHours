@@ -79,3 +79,94 @@ const hondaFactory = new Factory("Honda")
 // const car1 = new Cars("civic", 2012, "flames")
 // newFactory.warehouse.push(car1)
 //  console.log(newFactory)
+
+// We could build a forum
+
+// First need to build a post class that  our forum/factory will make
+class Post {
+    constructor(name, post) {
+      this.name = name;
+      this.post = post;
+    }
+  }
+  
+  // Now we build our factory that build posts
+  class Forum {
+    constructor(forumType) {
+      this.forumType = forumType;
+      this.posts = [];
+    }
+    showPosts() {
+      for (let element of this.posts) console.log(element);
+    }
+  
+    showForum() {
+      console.log(this);
+    }
+  
+    addPosts(name, post) {
+      let newPost = new Post(name, post);
+      this.posts.unshift(newPost);
+    }
+  
+    deleteFirstPost() {
+      this.posts.shift();
+    }
+  }
+  
+  const pets = new Forum('Animals');
+  
+  pets.addPosts('Suneetha', 'Hello, World!!');
+  pets.addPosts('Kit', 'I love Dogs');
+  pets.addPosts('Pranusha', 'I love elephants!!!');
+  pets.addPosts('Emmanuel', ' I really dig whales');
+  pets.addPosts('Dylan', 'Ferrets are mid');
+  pets.showForum();
+  
+
+  // Create inital stack
+let initialStack = ['dog', 'cat', 'chicken'];
+
+// Create class for creating pieces of data
+class DataBank {
+  constructor(initialData) {
+    this.data = [...initialData];
+  }
+  showMemoryStack() {
+    console.log(this.data);
+  }
+  createData(input) {
+    this.data.unshift(input);
+    console.log(`Updated Data ${this.data}`)
+  }
+
+  eraseLastAdded() {
+    this.data.shift();
+    console.log(`Updated Data ${this.data}`)
+  }
+  search(query) {
+    if (this.data.includes(query)) {
+      let index = this.data.indexOf(query);
+      console.log(`Found ${query} at index ${index}`);
+    } else {
+      console.log('Item Not Found');
+    }
+  }
+  searchAndDelete(query) {
+    if (this.data.includes(query)) {
+      let index = this.data.indexOf(query);
+      this.data.splice(index, 1);
+      console.log(`${query} at index ${index} was deleted`);
+    } else {
+      console.log('Item Not Found, nothing deleted');
+    }
+  }
+}
+
+let animals = new DataBank(initialStack);
+animals.showMemoryStack()
+animals.createData('puppie');
+animals.search('dog');
+animals.showMemoryStack();
+animals.searchAndDelete('doggie')
+animals.showMemoryStack()
